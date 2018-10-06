@@ -1,0 +1,10 @@
+Vulnerability: CVE-2008-1446, found - 3
+Vulnerability: CVE-2009-2521, found - 3
+Vulnerability: CVE-2010-1899, found - 3
+Vulnerability: CVE-2010-1256, found - 3
+Vulnerability: CVE-2009-1535, found - 2
+Vulnerability: CVE-2009-4444, found - 2
+Vulnerability: CVE-2009-3023, found - 2
+Vulnerability: CVE-2009-3555, found - 1
+Vulnerability: CVE-2008-0074, found - 1
+Vulnerability: MS17-010, found - 1

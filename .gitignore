@@ -1,0 +1,5 @@
+.env
+results
+harvester/.env
+harvester/results
+harvester/__pycache__

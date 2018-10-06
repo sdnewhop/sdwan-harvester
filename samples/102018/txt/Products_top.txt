@@ -1,0 +1,10 @@
+Product: Riverbed SteelHead, found - 493
+Product: VMWare VeloCloud, found - 452
+Product: Arista Networks EOS, found - 255
+Product: Sonus SBC Edge, found - 188
+Product: Silver Peak Systems Unity Orchestrator, found - 168
+Product: Fatpipe SYMPHONY SD-WAN, found - 166
+Product: Versa Flex, found - 104
+Product: Viprinet Virtual VPN Hub, found - 68
+Product: Nuage Networks SD-WAN (VNS), found - 67
+Product: Versa Director, found - 67
