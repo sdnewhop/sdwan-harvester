@@ -32,7 +32,7 @@ NMAP_SCRIPTS_PATH = "../nse-scripts"
 PY_SCRIPTS_PATH = "../py-scripts"
 
 # Map markers
-MAP_MARKERS_DIR = "../map"
+MAP_MARKERS_DIR = "../samples/map"
 
 # Sort output files by extensions
 JSON_DIR = "json"

@@ -21,7 +21,7 @@ core.MAX_VULNERS = 10
 core.NMAP_SCRIPTS_PATH = "nse-scripts"
 core.PY_SCRIPTS_PATH = "py-scripts"
 
-core.MAP_MARKERS_DIR = "map"
+core.MAP_MARKERS_DIR = "samples/map"
 core.RESULTS_DIR = "results"
 
 
