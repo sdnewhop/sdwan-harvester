@@ -60,6 +60,8 @@ export SHODAN_API_KEY=YOUR_API_KEY_HERE
 10. `-maxv MAX_VULNERS, --max-vulners MAX_VULNERS` - the Maximum Number of Vulnerabilities shown in reports.  
 *Default value is `10`.*
 
+11. `-u, --update-markers` - Update map markers.
+
 ### Examples
 Show help 
 ```
