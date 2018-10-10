@@ -19,6 +19,7 @@ core.MAX_VULNERS = 10
 
 # Default paths and directories
 core.NMAP_SCRIPTS_PATH = "nse-scripts"
+core.PY_SCRIPTS_PATH = "py-scripts"
 core.RESULTS_DIR = "results"
 
 
