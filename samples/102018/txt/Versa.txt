@@ -1,0 +1,10 @@
+Vulnerability: CVE-2018-1053, found - 3
+Vulnerability: CVE-2018-1115, found - 3
+Vulnerability: CVE-2017-7548, found - 3
+Vulnerability: CVE-2018-1058, found - 3
+Vulnerability: CVE-2017-12172, found - 3
+Vulnerability: CVE-2017-7484, found - 3
+Vulnerability: CVE-2017-7485, found - 3
+Vulnerability: CVE-2017-7486, found - 3
+Vulnerability: CVE-2017-7547, found - 3
+Vulnerability: CVE-2017-7546, found - 3
