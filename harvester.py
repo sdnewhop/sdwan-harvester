@@ -20,6 +20,8 @@ core.MAX_VULNERS = 10
 # Default paths and directories
 core.NMAP_SCRIPTS_PATH = "nse-scripts"
 core.PY_SCRIPTS_PATH = "py-scripts"
+
+core.MAP_MARKERS_DIR = "map"
 core.RESULTS_DIR = "results"
 
 
@@ -83,6 +85,8 @@ def main():
     parser.add_argument("-maxv", "--max-vulners", default=core.MAX_VULNERS,
                         type=int, action="store",
                         help="Max number of vulners in statistics")
+    parser.add_argument("-u", "--update-markers", action="store_true",
+                        default=False, help="Update map markers with new results")
     args = parser.parse_args()
 
     # Try to get key from environment if it was not passed with CLI

@@ -31,6 +31,9 @@ MAX_VULNERS = 10
 NMAP_SCRIPTS_PATH = "../nse-scripts"
 PY_SCRIPTS_PATH = "../py-scripts"
 
+# Map markers
+MAP_MARKERS_DIR = "../map"
+
 # Sort output files by extensions
 JSON_DIR = "json"
 CSV_DIR = "csv"
@@ -822,6 +825,18 @@ def create_root_dir(dest):
         os.makedirs(full_path)
 
 
+def update_map_markers(result_data):
+    """
+    Update markers for SD-WAN map
+
+    :param result_data: results with geo data (latitude, longitude)
+    :return: None
+    """
+    with open("{map_dir}/maps/markers.js".format(map_dir=MAP_MARKERS_DIR), mode="w") \
+            as markers_js:
+        markers_js.write("var markers = {data};".format(data=result_data))
+
+
 def run(args):
     """
     Main harvester core module
@@ -973,3 +988,7 @@ def run(args):
                              GROUPED_BY_VERSION_FILE)
 
     create_top_and_chart(result, args.max_vendors, args.destination)
+
+    # Update map markers if needed
+    if result and args.update_markers:
+        update_map_markers(result)
