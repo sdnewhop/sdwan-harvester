@@ -54,7 +54,7 @@
   {"vendor": "Arista","product":"Arista Networks EOS", "query":"\"Arista Networks EOS\"", "script":"", "confidence": "certain"},
   {"vendor": "128 Technology","product":"128 Technology Networking Platform", "query":"http.title:\"128T Networking Platform\"", "script":"", "confidence": "tentative"},
   {"vendor": "128 Technology","product":"128 Technology Networking Platform", "query":"http.favicon.hash:-1556425248", "script":"", "confidence": "tentative"},
-  {"vendor": "Glue Networks","product":"Gluware Control", "query":"title:\"Gluware Control\"", "script":"", "confidence": "certain"},
+  {"vendor": "Glue Networks","product":"Gluware Control", "query":"title:\"Gluware Control\"", "script":"vgluware.py", "confidence": "certain"},
   {"vendor": "Barracuda Networks","product":"Barracuda CloudGen Firewall", "query":"ssl:\"Barracuda CloudGen Firewall\" port:\"443\"", "script":"", "confidence": "certain"},
   {"vendor": "Barracuda Networks","product":"Barracuda CloudGen Firewall", "query":"Barracuda CloudGen Firewall", "script":"", "confidence": "certain"},
   {"vendor": "Juniper","product":"Juniper Networks Contrail SD-WAN", "query":"title:\"Log In - Juniper Networks Web Management\"", "script":"", "confidence": "tentative"},

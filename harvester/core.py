@@ -8,6 +8,7 @@ import re
 import sys
 import time
 from collections import Counter
+from importlib import import_module
 
 import nmap
 import shodan
@@ -25,7 +26,10 @@ DEFAULT_CONFIDENCE = "certain"
 MAX_COUNTRIES = 10
 MAX_VENDORS = 10
 MAX_VULNERS = 10
+
+# Additional scripts
 NMAP_SCRIPTS_PATH = "../nse-scripts"
+PY_SCRIPTS_PATH = "../py-scripts"
 
 # Sort output files by extensions
 JSON_DIR = "json"
@@ -217,6 +221,31 @@ def nmap_script_exec(nm, ip, port, script):
     return version
 
 
+def python_script_exec(script, ip):
+    """
+    Import additional python script and run it
+
+    :param script: script name from json (str)
+    :return: version (str)
+    """
+    if script.endswith('.py'):
+        py_module = script[:-3]
+    else:
+        py_module = script
+
+    try:
+        module = import_module('.' + py_module, package=PY_SCRIPTS_PATH)
+    except Exception:
+        return
+
+    if not module:
+        return
+    version = module.main(ip)
+    if not version:
+        return
+    return version
+
+
 def get_info(nm, script, vendor, elem):
     """
     Check vendor and port before nmap script executing
@@ -256,10 +285,15 @@ def get_info(nm, script, vendor, elem):
                            len("EOS version "):version_index_end]
             return version
 
+    # Check if we got nmap or python script
     else:
-        if str(elem.get("port")) in ["80", "443", "8080"] and script:
-            return nmap_script_exec(nm, elem.get("ip_str"), elem.get("port"),
-                                    script)
+        if str(elem.get("port")) in ["80", "443", "8080"]:
+            if not script:
+                return
+            if script.endswith(".nse"):
+                return nmap_script_exec(nm, elem.get("ip_str"), elem.get("port"), script)
+            if script.endswith(".py"):
+                return python_script_exec(script, elem.get("ip_str"))
 
 
 def delete_build(dver):
