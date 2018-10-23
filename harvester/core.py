@@ -16,7 +16,8 @@ from colorama import Fore, Style
 from matplotlib import pyplot as plt
 from pycountry_convert import \
     country_alpha2_to_continent_code as code_to_continent
-from pycountry_convert import country_name_to_country_alpha2 as country_to_code
+from pycountry_convert import \
+    country_name_to_country_alpha2 as country_to_code
 
 # Interface part
 # Can be overwritten by calling module
@@ -123,10 +124,12 @@ def write_result_to_file_json(result_array, dest_dir, filename):
                 mode="w") as file:
             file.write(json.dumps(result_array))
     except FileNotFoundError:
-        print("{color}Error: destination file write failed{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+        print("{color}Error: destination file write failed{reset}".format(
+            color=ERROR_COLOR, reset=RESET_COLOR))
 
 
-def write_result_to_file_csv(result_array, dest_dir, filename=RESULT_CSV_FILE):
+def write_result_to_file_csv(result_array, dest_dir,
+                             filename=RESULT_CSV_FILE):
     """
     Write result array to output csv file
 
@@ -150,7 +153,8 @@ def write_result_to_file_csv(result_array, dest_dir, filename=RESULT_CSV_FILE):
             for row in result_array:
                 writer.writerow(row)
     except FileNotFoundError:
-        print("{color}Error: destination file write failed{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+        print("{color}Error: destination file write failed{reset}".format(
+            color=ERROR_COLOR, reset=RESET_COLOR))
 
 
 def group_by_version(result_dict):
@@ -294,7 +298,8 @@ def get_info(nm, script, vendor, elem):
             if not script:
                 return
             if script.endswith(".nse"):
-                return nmap_script_exec(nm, elem.get("ip_str"), elem.get("port"), script)
+                return nmap_script_exec(nm, elem.get("ip_str"),
+                                        elem.get("port"), script)
             if script.endswith(".py"):
                 return python_script_exec(script, elem.get("ip_str"))
 
@@ -377,7 +382,8 @@ def create_top_and_chart(results, max_vendors, dest):
                 mode="w") as file:
             file.write(top_max)
     except FileNotFoundError:
-        print("{color}Error: destination file write failed{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+        print("{color}Error: destination file write failed{reset}".format(
+            color=ERROR_COLOR, reset=RESET_COLOR))
         return
 
     global_values = [value for key, value in max_vendors_list]
@@ -388,7 +394,8 @@ def create_top_and_chart(results, max_vendors, dest):
     plt.figure(VENDOR_PIE_CHART_ID)
     plt.subplots_adjust(bottom=.05, left=.01, right=.99, top=.90, hspace=.35)
     plt.pie(global_values, explode=explode, labels=global_keys,
-            autopct=make_autopct(global_values), textprops={'fontsize': PIE_LABEL_FONT_SIZE})
+            autopct=make_autopct(global_values),
+            textprops={'fontsize': PIE_LABEL_FONT_SIZE})
     plt.axis("equal")
     plt.suptitle(PIE_VENDORS_TITLE, fontsize=PIE_SUPTITLE_FONT_SIZE)
 
@@ -438,7 +445,8 @@ def write_continents_top(continents):
                     mode="w") as file:
                 file.write(top_continents_list)
         except FileNotFoundError:
-            print("{color}Error: destination file write failed{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+            print("{color}Error: destination file write failed{reset}".format(
+                color=ERROR_COLOR, reset=RESET_COLOR))
 
 
 def count_continents(unique_countries):
@@ -495,7 +503,8 @@ def create_pie_chart(elements, suptitle, png, figure_id):
     explode[list(values).index(max_value)] = 0.1
 
     plt.pie(values, labels=keys,
-            autopct=make_autopct(values), explode=explode, textprops={'fontsize': PIE_LABEL_FONT_SIZE})
+            autopct=make_autopct(values), explode=explode,
+            textprops={'fontsize': PIE_LABEL_FONT_SIZE})
     plt.axis("equal")
     plt.suptitle(suptitle, fontsize=PIE_SUPTITLE_FONT_SIZE)
 
@@ -524,9 +533,11 @@ def count_entries(elements, max_elements, element_name, filename):
     if max_elements < real_max:
         real_max = max_elements
 
+    full_dict = {key: sorted_by_value[key] for key in list(sorted_by_value)}
     fixed_dict = {key: sorted_by_value[key] for key in
                   list(sorted_by_value)[:real_max]}
 
+    # Write top
     top_elements_list = ""
     for element in fixed_dict.keys():
         top_elements_list += "{type}: {value}, found - {count}\n".format(
@@ -540,9 +551,10 @@ def count_entries(elements, max_elements, element_name, filename):
                     mode="w") as file:
                 file.write(top_elements_list)
         except FileNotFoundError:
-            print("{color}Error: destination file write failed{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+            print("{color}Error: destination file write failed{reset}".format(
+                color=ERROR_COLOR, reset=RESET_COLOR))
 
-    return fixed_dict
+    return fixed_dict, full_dict
 
 
 def add_hostvuln_to_allvuln(host_vulners, all_vulners):
@@ -609,7 +621,9 @@ def snmp_checker(host_data, ip):
     for service in data_list:
         snmp_service = service.get("snmp")
         if snmp_service:
-            print("{color}[+] found SNMP at: {addr}{reset}".format(addr=ip, color=ADD_SNMP_COLOR, reset=RESET_COLOR))
+            print("{color}[+] found SNMP at: {addr}{reset}".format(addr=ip,
+                                                                   color=ADD_SNMP_COLOR,
+                                                                   reset=RESET_COLOR))
             return "CWE-798"
 
 
@@ -626,14 +640,18 @@ def host_vulners_scan(api, ip):
     try:
         host_data = api.host(ip)
     except shodan.exception.APIError as rate_limit_err:
-        print("{color}Request limit error (vulnerabilities): {error_info}{reset}".format(error_info=rate_limit_err,
-                                                                                         color=ERROR_COLOR,
-                                                                                         reset=RESET_COLOR))
+        print(
+            "{color}Request limit error (vulnerabilities): {error_info}{reset}".format(
+                error_info=rate_limit_err,
+                color=ERROR_COLOR,
+                reset=RESET_COLOR))
         time.sleep(REQUEST_LIMIT_SLEEP_TIME)
         return host_vulners_scan(api, ip)
     except Exception as unknown_error:
         print(
-            "{color}Error: {error_info}{reset}".format(error_info=unknown_error, color=ERROR_COLOR, reset=RESET_COLOR))
+            "{color}Error: {error_info}{reset}".format(
+                error_info=unknown_error, color=ERROR_COLOR,
+                reset=RESET_COLOR))
         return
 
     snmp_vulner = snmp_checker(host_data, ip)
@@ -720,29 +738,23 @@ def new_scan(queries, destination, confidence, shodan_key, vuln_scan):
 
             # Parse every field from current scanned host
             for result_field in current_result:
+
+                # Check for latitude and longitude
                 location = result_field["location"]
                 if None in (location["latitude"], location["longitude"]):
                     continue
+
+                # Collect countries for country-chart
+                if location["country_name"]:
+                    countries.append(location["country_name"])
+
+                # Collect additional host info
                 info = str(get_info(nm, query["script"], query["vendor"],
                                     result_field))
                 parsed_additional_info = delete_build(info)
-                add_to_array(result, result_csv,
-                             {
-                                 "product": query["product"],
-                                 "vendor": query["vendor"],
-                                 "port": result_field.get("port"),
-                                 "proto": result_field["_shodan"]["module"],
-                                 "ip": result_field.get("ip_str"),
-                                 "lat": result_field["location"]["latitude"],
-                                 "lng": result_field["location"]["longitude"],
-                                 "additional_info": parsed_additional_info
-                             })
 
-                # Collect countries for country-chart
-                if result_field["location"]["country_name"]:
-                    countries.append(result_field["location"]["country_name"])
-
-                # Collect CVEs for CVE chart
+                # Collect CVEs if vulnerabilities scan is on
+                host_vulners = None
                 if vuln_scan:
                     host_vulners = host_vulners_scan(api, result_field.get(
                         "ip_str"))
@@ -760,8 +772,23 @@ def new_scan(queries, destination, confidence, shodan_key, vuln_scan):
                         vendor_vulners_scan(query["vendor"], vendor_vulners,
                                             host_vulners)
 
+                # Create result array
+                add_to_array(result, result_csv,
+                             {
+                                 "product": query["product"],
+                                 "vendor": query["vendor"],
+                                 "port": result_field.get("port"),
+                                 "proto": result_field["_shodan"]["module"],
+                                 "ip": result_field.get("ip_str"),
+                                 "lat": result_field["location"]["latitude"],
+                                 "lng": result_field["location"]["longitude"],
+                                 "country": location["country_name"],
+                                 "vulnerabilities": host_vulners,
+                                 "additional_info": parsed_additional_info
+                             })
+
+            # Calculate vulnerabilities quantity after new query
             if vuln_scan:
-                # Calculate vulnerabilities quantity after new query
                 print(
                     "{color}[!] vulnerabilities found: {count}{reset}".format(
                         color=ADD_VULNERABILITIES_COLOR,
@@ -788,10 +815,11 @@ def new_scan(queries, destination, confidence, shodan_key, vuln_scan):
         color=ADD_VULNERABILITIES_COLOR,
         result_count=len(result),
         reset=RESET_COLOR))
-    print("{color}Final result (unique pairs host and port): {unique_count}{reset}".format(
-        color=ADD_VULNERABILITIES_COLOR,
-        unique_count=len(result_csv),
-        reset=RESET_COLOR))
+    print(
+        "{color}Final result (unique pairs host and port): {unique_count}{reset}".format(
+            color=ADD_VULNERABILITIES_COLOR,
+            unique_count=len(result_csv),
+            reset=RESET_COLOR))
 
     write_result_to_file_json(result, destination, RESULT_JSON_FILE)
     write_result_to_file_csv(result_csv, destination)
@@ -832,7 +860,8 @@ def update_map_markers(result_data):
     :param result_data: results with geo data (latitude, longitude)
     :return: None
     """
-    with open("{map_dir}/maps/markers.js".format(map_dir=MAP_MARKERS_DIR), mode="w") \
+    with open("{map_dir}/maps/markers.js".format(map_dir=MAP_MARKERS_DIR),
+              mode="w") \
             as markers_js:
         markers_js.write("var markers = {data};".format(data=result_data))
 
@@ -847,7 +876,8 @@ def run(args):
     # ['silver', 'peak,', ' talari,', ...] -> ['silver peak', 'talari', ...]
     if args.vulners:
         parse_arguments = ' '.join(args.vulners).split(',')
-        args.vulners = [arg.strip() for idx, arg in enumerate(parse_arguments)]
+        args.vulners = [arg.strip() for idx, arg in
+                        enumerate(parse_arguments)]
 
     # Create directories and subdirectories for output results
     create_root_dir(args.destination)
@@ -859,11 +889,12 @@ def run(args):
         with open(args.queries) as fp:
             queries = json.loads(fp.read())
     except FileNotFoundError as file_error:
-        print("{color}Can not find file {file_name}: {error_msg}{reset}".format(
-            color=ERROR_COLOR,
-            file_name=args.queries,
-            error_msg=file_error,
-            reset=RESET_COLOR))
+        print(
+            "{color}Can not find file {file_name}: {error_msg}{reset}".format(
+                color=ERROR_COLOR,
+                file_name=args.queries,
+                error_msg=file_error,
+                reset=RESET_COLOR))
         sys.exit(1)
 
     # Start new scan if new is initiated
@@ -883,7 +914,8 @@ def run(args):
     if not result:
         result = try_load_results(args.destination, RESULT_JSON_FILE)
         if result is None:
-            print("{color}File with results not found. Exit{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+            print("{color}File with results not found. Exit{reset}".format(
+                color=ERROR_COLOR, reset=RESET_COLOR))
             sys.exit(1)
 
     # If no vendor vulnerabilities - load offline json file with vulnerabilities
@@ -891,32 +923,42 @@ def run(args):
         vendor_vulners = try_load_results(args.destination,
                                           VULNERS_BY_VENDORS_JSON)
         if vendor_vulners is None:
-            print("{color}File with vulnerabilities by vendor not found. Ignored{reset}".format(color=ERROR_COLOR,
-                                                                                                reset=RESET_COLOR))
+            print(
+                "{color}File with vulnerabilities by vendor not found. Ignored{reset}".format(
+                    color=ERROR_COLOR,
+                    reset=RESET_COLOR))
 
     # If no countries results - load offline json file with countries
     if not countries:
         countries = try_load_results(args.destination, COUNTRIES_JSON_FILE)
         if countries is None:
-            print("{color}File with countries not found. Ignored{reset}".format(color=ERROR_COLOR, reset=RESET_COLOR))
+            print(
+                "{color}File with countries not found. Ignored{reset}".format(
+                    color=ERROR_COLOR, reset=RESET_COLOR))
 
     if args.vulners:
         # If vulnerabilities is required, but empty - load offline json results
         if not vulners:
             vulners = try_load_results(args.destination, VULNERS_JSON_FILE)
             if vulners is None:
-                print("{color}File with vulnerabilities not found. Ignored{reset}".format(color=ERROR_COLOR,
-                                                                                          reset=RESET_COLOR))
+                print(
+                    "{color}File with vulnerabilities not found. Ignored{reset}".format(
+                        color=ERROR_COLOR,
+                        reset=RESET_COLOR))
 
         # If vulnerabilities loading is succeeded
         if vulners:
-            unique_vulners = count_entries(vulners, args.max_vulners, "Vulnerability",
-                                           VULNERS_TOP_TXT_FILE)
-            create_pie_chart(unique_vulners, PIE_VULNERABILITIES_TITLE, VULNERS_PIECHART_FILE,
+            unique_vulners_top, all_unique_vulners = count_entries(
+                                            vulners,
+                                            args.max_vulners,
+                                            "Vulnerability",
+                                            VULNERS_TOP_TXT_FILE)
+            create_pie_chart(unique_vulners_top, PIE_VULNERABILITIES_TITLE,
+                             VULNERS_PIECHART_FILE,
                              VULNERS_PIE_CHART_ID)
             # If new scan is initiated - update json file with new results
             if args.new is True:
-                write_result_to_file_json(unique_vulners, args.destination,
+                write_result_to_file_json(all_unique_vulners, args.destination,
                                           VULNERS_JSON_FILE)
 
         # If we got vulnerabilities by vendors - save all results in json
@@ -925,29 +967,34 @@ def run(args):
                                       VULNERS_BY_VENDORS_JSON)
             start_id = VULNERS_BY_VENDORS_PIE_CHART_ID
             for vendor in vendor_vulners.keys():
-                unique_vendor = count_entries(vendor_vulners[vendor],
-                                              args.max_vulners, "Vulnerability",
-                                              vendor + '.txt')
-                create_pie_chart(unique_vendor,
+                unique_vendor_top, all_unique_vendors = count_entries(
+                                            vendor_vulners[vendor],
+                                            args.max_vulners,
+                                            "Vulnerability",
+                                            vendor + '.txt')
+                create_pie_chart(unique_vendor_top,
                                  vendor + " " + PIE_VULNERS_BY_VENDORS_TITLE_ADD,
                                  vendor + '.png',
                                  start_id)
                 if args.new is True:
                     # Write jsons for every vendor
-                    write_result_to_file_json(unique_vendor, args.destination,
+                    write_result_to_file_json(all_unique_vendors,
+                                              args.destination,
                                               vendor + '.json')
                 start_id += 1
 
     # If countries loading is succeeded
     if countries:
-        unique_countries = count_entries(countries, args.max_countries,
-                                         "Country",
-                                         COUNTRIES_TOP_TXT_FILE)
-        create_pie_chart(unique_countries, PIE_COUNTRIES_TITLE,
+        unique_countries_top, all_unique_countries = count_entries(
+                                        countries,
+                                        args.max_countries,
+                                        "Country",
+                                        COUNTRIES_TOP_TXT_FILE)
+        create_pie_chart(unique_countries_top, PIE_COUNTRIES_TITLE,
                          COUNTRIES_PIECHART_FILE, COUNTRIES_PIE_CHART_ID)
 
         # Work on continents, based on countries
-        unique_continents = count_continents(unique_countries)
+        unique_continents = count_continents(all_unique_countries)
         write_result_to_file_json(unique_continents, args.destination,
                                   CONTINENTS_JSON_FILE)
         write_continents_top(unique_continents)
@@ -957,37 +1004,48 @@ def run(args):
 
         # Save to json if this is our new scan result
         if args.new is True:
-            write_result_to_file_json(unique_countries, args.destination,
+            write_result_to_file_json(all_unique_countries, args.destination,
                                       COUNTRIES_JSON_FILE)
 
     # Count products
     if result:
-        product_list = []
-        # Make full list of products from results
-        for product in result:
-            product_list.append(product['product'])
+        try:
+            product_list = []
+            # Make full list of products from results
+            for product in result:
+                product_list.append(product['product'])
 
-        unique_products = count_entries(product_list, args.max_vendors, "Product", PRODUCTS_TOP_TXT_FILE)
-        write_result_to_file_json(unique_products, args.destination, PRODUCTS_JSON_FILE)
-        create_pie_chart(unique_products, PIE_PRODUCTS_TITLE,
-                         PRODUCTS_PIECHART_FILE,
-                         PRODUCTS_PIE_CHART_ID)
+            unique_products_top, all_unique_products = count_entries(
+                                        product_list,
+                                        args.max_vendors,
+                                        "Product",
+                                        PRODUCTS_TOP_TXT_FILE)
+            write_result_to_file_json(all_unique_products, args.destination,
+                                      PRODUCTS_JSON_FILE)
+            create_pie_chart(unique_products_top, PIE_PRODUCTS_TITLE,
+                             PRODUCTS_PIECHART_FILE,
+                             PRODUCTS_PIE_CHART_ID)
+        except Exception:
+            pass
 
-    grouped_dict = group_by_version(result)
-    grouped_by_ver_res = [
-        {
-            "vendor": value["vendor"],
-            "product": key.split(";")[1],
-            "additional_info": key.split(";")[0],
-            "ip_list": value["ip_list"],
-            "hosts_amount": len(value["ip_list"].split(","))
-        } for key, value in grouped_dict.items()
-    ]
+    try:
+        grouped_dict = group_by_version(result)
+        grouped_by_ver_res = [
+            {
+                "vendor": value["vendor"],
+                "product": key.split(";")[1],
+                "additional_info": key.split(";")[0],
+                "ip_list": value["ip_list"],
+                "hosts_amount": len(value["ip_list"].split(","))
+            } for key, value in grouped_dict.items()
+        ]
 
-    write_result_to_file_csv(grouped_by_ver_res, args.destination,
-                             GROUPED_BY_VERSION_FILE)
+        write_result_to_file_csv(grouped_by_ver_res, args.destination,
+                                 GROUPED_BY_VERSION_FILE)
 
-    create_top_and_chart(result, args.max_vendors, args.destination)
+        create_top_and_chart(result, args.max_vendors, args.destination)
+    except Exception:
+        pass
 
     # Update map markers if needed
     if result and args.update_markers:
