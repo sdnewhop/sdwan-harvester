@@ -1,4 +1,6 @@
-Continent: North America, found - 1631
-Continent: Europe, found - 486
-Continent: Oceania, found - 88
-Continent: Asia, found - 126
+Continent: North America, found - 1300
+Continent: Europe, found - 456
+Continent: Oceania, found - 74
+Continent: Asia, found - 313
+Continent: Africa, found - 87
+Continent: South and Central America, found - 29
