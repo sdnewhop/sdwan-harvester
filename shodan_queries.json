@@ -65,7 +65,7 @@
   {"vendor": "Viprinet","product":"Viprinet Virtual VPN Hub", "query":"title:\"Viprinet - AdminDesk - Login\"", "script":"", "confidence": "certain"},
   {"vendor": "Viprinet","product":"Viprinet Virtual VPN Hub", "query":"http.favicon.hash:-1352019987", "script":"", "confidence": "certain"},
   {"vendor": "Viprinet","product":"Viprinet Virtual VPN Hub", "query":"ssl: \"Viprinet\" port:\"161\"", "script":"", "confidence": "certain"},
-  {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: CR4250\"", "script":"", "confidence":"certain"},
-  {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: AER2200\"", "script":"", "confidence":"certain"},
+  {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: CR4250\"", "script":"vcradlepoint.nse", "confidence":"certain"},
+  {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: AER2200\"", "script":"vcradlepoint.nse", "confidence":"certain"},
   {"vendor": "Fortinet", "product": "Fortinet FortiGate SD-WAN", "query":"ssl:\"OU=FortiGate\" ssl:\"O=Fortinet\" ssl:CN=FGT", "script":"", "confidence":"certain"}
 ]
