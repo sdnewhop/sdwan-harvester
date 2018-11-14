@@ -1,0 +1,10 @@
+Vulnerability: CVE-2017-15906, found - 11
+Vulnerability: CVE-2018-15473, found - 11
+Vulnerability: CVE-2017-15710, found - 7
+Vulnerability: CVE-2016-8612, found - 7
+Vulnerability: CVE-2017-7679, found - 7
+Vulnerability: CVE-2017-9788, found - 7
+Vulnerability: CVE-2016-0736, found - 7
+Vulnerability: CVE-2014-3583, found - 7
+Vulnerability: CVE-2014-8109, found - 7
+Vulnerability: CVE-2018-1283, found - 7

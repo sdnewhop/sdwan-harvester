@@ -1,0 +1,20 @@
+Country: United States, found - 4705
+Country: Germany, found - 1050
+Country: United Kingdom, found - 582
+Country: Australia, found - 439
+Country: Netherlands, found - 378
+Country: Singapore, found - 323
+Country: China, found - 243
+Country: France, found - 173
+Country: Canada, found - 164
+Country: India, found - 157
+Country: Hong Kong, found - 153
+Country: Austria, found - 119
+Country: Belgium, found - 98
+Country: Switzerland, found - 96
+Country: South Africa, found - 95
+Country: Japan, found - 81
+Country: Poland, found - 73
+Country: Greece, found - 73
+Country: Thailand, found - 72
+Country: Brazil, found - 66

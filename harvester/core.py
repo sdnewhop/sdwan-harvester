@@ -863,7 +863,8 @@ def update_map_markers(result_data):
     with open("{map_dir}/maps/markers.js".format(map_dir=MAP_MARKERS_DIR),
               mode="w") \
             as markers_js:
-        markers_js.write("var markers = {data};".format(data=result_data))
+        data = json.dumps(result_data)
+        markers_js.write("var markers = {data};".format(data=data))
 
 
 def run(args):
