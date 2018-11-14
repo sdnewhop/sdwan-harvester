@@ -1,0 +1,10 @@
+Vendor: VMWare Found unique pairs (hosts + port): 1469
+Vendor: Viprinet Found unique pairs (hosts + port): 1065
+Vendor: Riverbed Found unique pairs (hosts + port): 899
+Vendor: Silver Peak Systems Found unique pairs (hosts + port): 770
+Vendor: Versa Found unique pairs (hosts + port): 481
+Vendor: Cradlepoint Found unique pairs (hosts + port): 431
+Vendor: Sonus  Found unique pairs (hosts + port): 421
+Vendor: Cisco Found unique pairs (hosts + port): 402
+Vendor: Arista Found unique pairs (hosts + port): 274
+Vendor: Fatpipe Found unique pairs (hosts + port): 265
