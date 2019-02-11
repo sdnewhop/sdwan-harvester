@@ -68,5 +68,6 @@
   {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: CR4250\"", "script":"vcradlepoint.nse", "confidence":"certain"},
   {"vendor": "Cradlepoint", "product": "Cradlepoint SD-WAN", "query":"title:\"Login :: AER2200\"", "script":"vcradlepoint.nse", "confidence":"certain"},
   {"vendor": "Fortinet", "product": "Fortinet FortiGate SD-WAN", "query":"ssl:\"OU=FortiGate\" ssl:\"O=Fortinet\" ssl:CN=FGT", "script":"", "confidence":"certain"},
+  {"vendor": "Fortinet", "product": "Fortinet FortiGate SD-WAN", "query":"http.favicon.hash:945408572 http.title:\"302*\" port:8008", "script":"", "confidence":"certain"},
   {"vendor": "Brain4Net", "product": "Brain4Net Orchestrator", "query":"title: B4N ORC", "script":"vbrain.nse", "confidence":"certain"}
 ]
