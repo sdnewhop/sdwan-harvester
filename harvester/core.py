@@ -294,7 +294,7 @@ def get_info(nm, script, vendor, elem):
 
     # Check if we got nmap or python script
     else:
-        if str(elem.get("port")) in ["80", "443", "8080"]:
+        if str(elem.get("port")) in ["80", "161", "443", "8008", "8080"]:
             if not script:
                 return
             if script.endswith(".nse"):
