@@ -28,6 +28,7 @@
   {"vendor": "Versa","product":"Versa Analytics", "query":"versa-analytics port:161", "script":"vversa_analytics.nse", "confidence": "certain"},
   {"vendor": "Versa","product":"Versa Analytics", "query":"ssl:\"versa-analytics\"", "script":"vversa_analytics.nse", "confidence": "certain"},
   {"vendor": "Versa","product":"Versa Analytics", "query":"\"van_analytics\" port:9160", "script":"vversa_analytics.nse", "confidence": "certain"},
+  {"vendor": "Versa","product":"Versa Analytics", "query":"Versa-Analytics-Server", "script":"vversa_analytics_server.nse", "confidence": "certain"},
   {"vendor": "Cisco","product":"Cisco SD-WAN", "query":"title:\"Viptela vManage\"", "script":"", "confidence": "certain"},
   {"vendor": "Cisco","product":"Cisco SD-WAN", "query":"title:\"Cisco vManage\"", "script":"", "confidence": "certain"},
   {"vendor": "Cisco","product":"Cisco SD-WAN", "query":"title:vManage", "script":"", "confidence": "certain"},
