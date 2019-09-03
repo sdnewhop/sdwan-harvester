@@ -1,7 +1,26 @@
 # SD-WAN Harvester
+:globe_with_meridians: SD-WAN Internet Census Framework
 
+## Disclaimer
+This project is no longer maintained. It is stable and you still can use it for SD-WAN scanning, but currently, more preferable and accurate way to scan different things on the internet (not only SD-WAN solutions) is to use our new Grinder Framework.  
+  
+**[:mag_right: Grinder Framework](https://github.com/sdnewhop/grinder)**  
+
+## Contents
+1. [Description](#description)
+1. [Slides](#slides)
+1. [Requirements](#requirements)
+1. [Installation](#installation)
+1. [Usage](#usage)
+   - [Command Line Arguments](#command-line-arguments)
+   - [Examples](#examples)
+
+## Description
 `SD-WAN Harvester` tool was created to automatically enumerate and fingerprint SD-WAN nodes on the Internet. 
 It uses Shodan search engine for discovering, NMAP NSE scripts for fingerprinting, and masscan to implement some specific checks.
+
+## Slides
+- [SD-WAN Internet Census. Zero Nights 2018](https://github.com/sdnewhop/sdwannewhope/blob/master/slides/zn-2018.pdf)
 
 ## Requirements
 `SD-WAN Harvester` requires [Python 3.6](https://www.python.org/getit/) or later and [Nmap](https://nmap.org/download.html).
