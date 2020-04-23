@@ -104,9 +104,9 @@ python3.6 harvester.py -sk YOUR_API_KEY -n -v all -mv 8 -mc 8 -maxv 8
 ```
 Run a new scan with all features enabled
 ```
- python3.6harvester.py -sk YOUR_API_KEY -n -v all -c all
+python3.6 harvester.py -sk YOUR_API_KEY -n -v all -c all
 ```
 Process data from previous scan results (for example, if you want to build new charts and graphics containing fewer vendors, countries, or vulners.)
 ```
- python3.6 harvester.py -v -mv <num> -mc <num> -maxv <num>
+python3.6 harvester.py -v -mv <num> -mc <num> -maxv <num>
 ```
